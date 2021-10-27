@@ -1,4 +1,23 @@
 .postCard {
-  position: relative;
+  display: flex;
   align-items: center;
+  justify-content: center;
+
+  margin: auto;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+
+.desc {
+  height: 80px;
+  overflow: scroll;
+}
+
+.desc::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }

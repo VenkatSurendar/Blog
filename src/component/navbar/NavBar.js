@@ -10,14 +10,6 @@ const Navbar = (props) => {
   return (
     <div className="main">
       <header className="hello scroll">
-        {/* <a className="logo" href="">
-              <img
-                src={Logo}
-                alt="Mahindra University"
-                class="navbar-brand"
-                width="240"
-              />
-            </a> */}
         <ul style={{ paddingInlineStart: "0px" }}>
           <li>
             <Link to="/home">
@@ -30,7 +22,7 @@ const Navbar = (props) => {
             </Link>
           </li>
           <li>
-            <Link to="/blogs">
+            <Link to="/home">
               <span className="middle-main">Blogs</span>
             </Link>
           </li>
