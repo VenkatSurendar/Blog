@@ -53,117 +53,67 @@ const PostCard = () => {
   };
 
   const renderComp = articles.map((item, index) => {
+    if (!item.author) {
+      console.log(item);
+    }
     return (
-      <div className="postCard">
-        <Row>
-          <Col>
-            <Card key={index} sx={{ maxWidth: 345 }}>
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    R
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={item.title}
-                subheader={item.published_at}
+      <div>
+        <Card key={index} sx={{ maxWidth: 345 }}>
+          <CardHeader
+            avatar={
+              <Avatar
+                src={`${item.author ? item.author.picture.url : "R"}`}
+                alt="R"
+                sx={{ bgcolor: red[500] }}
+                aria-label="recipe"
               />
-              <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Paella dish"
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {item.author}
-                  {item.description}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton>
-                <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                  <Typography paragraph>{item.content}</Typography>
-                </CardContent>
-              </Collapse>
-            </Card>
-          </Col>
-        </Row>
+            }
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title={item.title}
+            subheader={item.published_at}
+          />
+          <h5>{item.author ? item.author.name : "no name"}</h5>
+          <CardMedia
+            component="img"
+            height="194"
+            src="../media/1.jpg"
+            alt="Paella dish"
+          />
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              {item.description}
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography paragraph>{item.content}</Typography>
+            </CardContent>
+          </Collapse>
+        </Card>
       </div>
     );
   });
 
-  return <>{renderComp}</>;
+  return <div className="postCard">{renderComp}</div>;
 };
 export default PostCard;
-
-// import * as React from "react";
-// import Card from "@mui/material/Card";
-// import axios from "axios";
-// import CardActions from "@mui/material/CardActions";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
-// import Button from "@mui/material/Button";
-// import Typography from "@mui/material/Typography";
-// import { Row, Col } from "antd";
-// import "./card.css";
-
-// const PostCard = () => {
-//   const [articles, setArticles] = useState([]);
-//   useEffect(() => {
-//     const fetchArticles = async () => {
-//       const response = await axios("http://localhost:1337/articles");
-//       setArticles(response.data);
-//       console.log(response.data[0]);
-//     };
-//     fetchArticles();
-//   }, []);
-
-//   const renderComp = articles.map((item, index) => {
-//     return (
-//       <div>
-//         <Card key={index} sx={{ maxWidth: 345 }}>
-//           <CardMedia
-//             component="img"
-//             alt="green iguana"
-//             height="140"
-//             image="/static/images/cards/contemplative-reptile.jpg"
-//           />
-//           <CardContent>
-//             <Typography gutterBottom variant="h5" component="div">
-//               {item.title}
-//             </Typography>
-//             <Typography variant="body2" color="text.secondary">
-//               Lizards are a widespread group of squamate reptiles, with over
-//               6,000 species, ranging across all continents except Antarctica
-//             </Typography>
-//           </CardContent>
-//           <CardActions>
-//             <Button size="small">Share</Button>
-//             <Button size="small">Learn More</Button>
-//           </CardActions>
-//         </Card>
-//       </div>
-//     );
-//   });
-// };
-// export default PostCard;
