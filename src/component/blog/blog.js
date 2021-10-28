@@ -8,7 +8,9 @@ function Blog() {
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     const fetchArticles = async () => {
-      const response = await axios("http://localhost:1337/articles/");
+      const response = await axios(
+        "https://blog-app-task.herokuapp.com/articles",
+      );
       setArticles(response.data);
       console.log(response.data[0].author.name);
     };
